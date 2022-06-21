@@ -1,6 +1,4 @@
 
-#Meet Robo: your friend
-
 #import necessary libraries
 import io
 import random
@@ -51,7 +49,7 @@ def greeting(sentence):
 
 # Generating response
 def response(user_response):
-    robo_response=''
+    bot_response=''
     sent_tokens.append(user_response)
     TfidfVec = TfidfVectorizer(tokenizer=LemNormalize, stop_words='english')
     tfidf = TfidfVec.fit_transform(sent_tokens)
@@ -61,32 +59,32 @@ def response(user_response):
     flat.sort()
     req_tfidf = flat[-2]
     if(req_tfidf==0):
-        robo_response=robo_response+"I am sorry! I don't understand you"
-        return robo_response
+        bot_response=bot_response+"I am sorry! I don't understand you"
+        return bot_response
     else:
-        robo_response = robo_response+sent_tokens[idx]
-        return robo_response
+        bot_response = bot_response+sent_tokens[idx]
+        return bot_response
 
 
 flag=True
-print("ROBO: My name is Robo. I will answer your queries about Chatbots. If you want to exit, type Bye!")
+print("Bot: My name is Bot. I will answer your queries about Chatbots. If you want to exit, type Bye!")
 while(flag==True):
     user_response = input()
     user_response=user_response.lower()
     if(user_response!='bye'):
         if(user_response=='thanks' or user_response=='thank you' ):
             flag=False
-            print("ROBO: You are welcome..")
+            print("Bot: Hello..")
         else:
             if(greeting(user_response)!=None):
-                print("ROBO: "+greeting(user_response))
+                print("Bot: "+greeting(user_response))
             else:
-                print("ROBO: ",end="")
+                print("Bot: ",end="")
                 print(response(user_response))
                 sent_tokens.remove(user_response)
     else:
         flag=False
-        print("ROBO: Bye! take care..")    
+        print("Bot: Bye! See you soon..")    
         
         
 
